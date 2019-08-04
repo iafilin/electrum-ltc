@@ -227,6 +227,7 @@ class Commands:
         for i in l:
             v = i["value"]
             i["value"] = str(Decimal(v)/COIN) if v is not None else None
+            i["confirmations"] = self.wallet.get_tx_height(i["prevout_hash"]).conf
         return l
 
     @command('n')
